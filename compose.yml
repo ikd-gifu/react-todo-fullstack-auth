@@ -1,5 +1,6 @@
 services:
   db:
+    container_name: ${DB_CONTAINER_NAME:-react_todo_fullstack_auth_db}
     # Dockerのイメージストア（Docker Desktopの内部VM）に保存されているMySQLのイメージを使用
     image: mysql:8.0
     env_file: .env
@@ -11,7 +12,7 @@ services:
     ports:
       - "${MYSQL_PORT}:${MYSQL_CONTAINER_PORT}"
     volumes:
-      - db-data:/var/lib/mysql
+      - react-todo-fullstack-auth-db-data:/var/lib/mysql
     # healthy になると depends_on の条件を満たす
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-p${MYSQL_ROOT_PASSWORD}"]
@@ -20,6 +21,7 @@ services:
       retries: 10
 
   backend:
+    container_name: ${BACKEND_CONTAINER_NAME:-react_todo_fullstack_auth_backend}
     # ./backendにてDockerfileをビルドしてイメージを作成
     build:
       context: ./backend
@@ -32,6 +34,8 @@ services:
       DB_USERNAME: ${DB_USERNAME}
       DB_PASSWORD: ${DB_PASSWORD}
       RAILS_ENV: ${RAILS_ENV}
+      JWT_SECRET: ${JWT_SECRET}
+      FRONTEND_URL: ${FRONTEND_URL}
       TZ: ${TZ}
     # ホスト上のディレクトリをコンテナでマウントする
     # ローカル環境の作業ディレクトリをコンテナと共有する
@@ -49,4 +53,4 @@ services:
         condition: service_healthy
 
 volumes:
-  db-data:
+  react-todo-fullstack-auth-db-data:
