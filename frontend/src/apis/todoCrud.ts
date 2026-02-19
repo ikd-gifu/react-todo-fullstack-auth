@@ -25,7 +25,7 @@ export const getTodos = async () => {
     return res;
   }
 };
-const crea
+
 export const createTodo = async (payload: CreateTodoRequest) => {
   // 引数にオブジェクト(payload)を渡すので、payloadの型をオブジェクト型のCreateTodoRequestに指定
   try {
