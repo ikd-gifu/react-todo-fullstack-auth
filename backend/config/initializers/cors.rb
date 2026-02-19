@@ -8,7 +8,7 @@
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
     # 許可する “呼び出し元” を指定
-    origins ENV.fetch('FRONTEND_URL', 'http://localhost:5173')
+    origins ENV.fetch('FRONTEND_URL', 'http://localhost:5174')
 
     # すべての API パスを対象にする
     resource "*",
