@@ -6,12 +6,24 @@ module Api
         render json: todos.map { |todo| serialize_todo(todo) }
       end
 
+      # def create
+      #   todo = Todo.new(todo_params)
+      #   if todo.save
+      #     render json: serialize_todo(todo), status: :created
+      #   else
+      #     render json: { errors: todo.errors.full_messages }, status: :unprocessable_entity
+      #   end
+      # end
+
       def create
-        todo = Todo.new(todo_params)
-        if todo.save
-          render json: serialize_todo(todo), status: :created
+        # 開発中の一時的な対処
+        # TODO: 認証実装後は current_user に置き換える
+        @todo = Todo.new(todo_params.merge(user_id: User.first.id))
+
+        if @todo.save
+          render json: serialize_todo(@todo), status: :created
         else
-          render json: { errors: todo.errors.full_messages }, status: :unprocessable_entity
+          render json: { errors: @todo.errors.full_messages }, status: :unprocessable_entity
         end
       end
 

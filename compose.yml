@@ -11,6 +11,7 @@ services:
     # ホストのポート3306をコンテナ内のポート3306に公開
     ports:
       - "${MYSQL_PORT}:${MYSQL_CONTAINER_PORT}"
+    # MySQLのデータ（/var/lib/mysql）をホストマシンのDockerボリュームに永続化
     volumes:
       - react-todo-fullstack-auth-db-data:/var/lib/mysql
     # healthy になると depends_on の条件を満たす
@@ -52,5 +53,6 @@ services:
       db:
         condition: service_healthy
 
+# 名前付きボリュームの定義
 volumes:
   react-todo-fullstack-auth-db-data:
