@@ -27,6 +27,8 @@ export default tseslint.config(
         'warn', // エラーではなく警告
         { allowConstantExport: true }, // 定数のエクスポートは許可
       ],
+      // 一旦useEffect -> fetchTodo() -> setTodo()を許容
+      'react-hooks/set-state-in-effect': 'warn',
     },
   },
 )
