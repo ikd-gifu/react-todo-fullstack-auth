@@ -4,9 +4,11 @@
 // index.ts - エクスポート用
 // Router.tsx - <BrowserRouter>のラッパー
 // TodoRouter.tsx - <Routes>と<Route>の定義
-import { BrowserRouter, Routes, Route } from 'react-router';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router';
 import { PATHS } from '../constants/navigation.js';
-import { TodoPage, TodoDetailPage, TodoCreatePage, TodoEditPage } from '../pages/index.js';
+import { AuthProvider } from "../contexts/AuthContext";
+import { renderPublicRoutes } from "./renderPublicRoutes";
+import { renderProtectedRoutes } from "./renderProtectedRoutes";
 
 /**
  * アプリケーション全体のルーティング設定
@@ -14,13 +16,13 @@ import { TodoPage, TodoDetailPage, TodoCreatePage, TodoEditPage } from '../pages
 const Router = () => {
   return (
     <BrowserRouter>
-      <Routes>
-        {/* index属性でトップページを指定 */}
-        <Route index path={PATHS.TOP} element={<TodoPage />} />
-        <Route path={PATHS.DETAIL} element={<TodoDetailPage />} />
-        <Route path={PATHS.CREATE} element={<TodoCreatePage />} />
-        <Route path={PATHS.EDIT} element={<TodoEditPage />} />
-      </Routes>
+      <AuthProvider>
+        <Routes>
+          {renderPublicRoutes()}
+          {renderProtectedRoutes()}
+          <Route path="*" element={<Navigate to={PATHS.LOGIN} replace />} />
+        </Routes>
+      </AuthProvider>
     </BrowserRouter>
   );
 };

@@ -1,5 +1,9 @@
+# クライアントがトークンを保持し、毎回 Authorization: Bearer ... で送信（状態なし）
+# サーバー側にログイン状態を保持（状態あり）しないので、session を使わない
+
 class AuthService
   # 環境変数から直接取得
+  # 本番環境：Rails.application.credentials.secret_key_base
   SECRET_KEY = ENV['JWT_SECRET']
   
   # JWTの有効期限（24時間）
