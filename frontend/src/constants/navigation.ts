@@ -6,6 +6,8 @@ export const BASE_URL = '/react-todo-fullstack-auth';
 // ルート定義用（:id などのプレースホルダーを含む）
 // React Routerの<Route path={...}>で使用
 export const PATHS = {
+  LOGIN: `${BASE_URL}/login`,
+  SIGNUP: `${BASE_URL}/signup`,
   TOP: `${BASE_URL}/`,
   DETAIL: `${BASE_URL}/detail/:id`, // :id は動的パラメータ
   CREATE: `${BASE_URL}/create`,
@@ -15,6 +17,8 @@ export const PATHS = {
 // 遷移用（実際のパスを指定）
 // navigate()や<Link to={...}>で使用
 export const NAV_ITEMS = {
+  LOGIN: `${BASE_URL}/login`,
+  SIGNUP: `${BASE_URL}/signup`,
   TOP: `${BASE_URL}/`,
   DETAIL: `${BASE_URL}/detail/`, // 実際の遷移時は detail/1 のように結合
   CREATE: `${BASE_URL}/create`,
