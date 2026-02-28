@@ -12,10 +12,12 @@ export const TodoRouter = () => {
   return (
     <Routes>
       {/* index属性でトップページを指定 */}
-      <Route index path={PATHS.TOP} element={<TodoPage />} />
+      <Route path={PATHS.TOP} element={<TodoPage />} />
       <Route path={PATHS.DETAIL} element={<TodoDetailPage />} />
       <Route path={PATHS.CREATE} element={<TodoCreatePage />} />
       <Route path={PATHS.EDIT} element={<TodoEditPage />} />
+      {/* Routes 構成で未一致時に出る警告を回避 */}
+      <Route path="*" element={null} />
     </Routes>
   );
 };
