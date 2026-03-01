@@ -73,6 +73,7 @@ class ApplicationController < ActionController::API
   end
 
   # 認証を必須にする（before_actionで使用）
+  # current_userメソッドでauthenticate_requestを実行しトークン検証する
   def authenticate_user!
     raise AuthenticationError, 'ログインが必要です' unless current_user
   end

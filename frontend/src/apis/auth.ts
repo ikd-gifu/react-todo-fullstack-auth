@@ -14,6 +14,7 @@ export const signup = async (name: string, email: string, password: string, pass
     const response = await apiClient.post<AuthType>("/auth/signup", {
       user: { name, email, password, password_confirmation },
     });
+    // ApiResponse<T>の型アサーションでtry/catch で成功時と失敗時の戻り値を統一
     return { code: response.status, data: response.data } as ApiResponse<AuthType>;
   } catch (error) {
     return { code: isAxiosError(error) ? (error.response?.status ?? 500) : 500, message: resolveError(error) } as ApiResponse;

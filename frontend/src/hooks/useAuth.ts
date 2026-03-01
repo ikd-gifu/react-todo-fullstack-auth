@@ -28,6 +28,8 @@ export const useAuth = () => {
     navigate(NAV_ITEMS.LOGIN);
   }, [navigate]);
 
+  // AuthProviderで全ページに配布
+  // pathname が変わると認証状態を再判定して、必要ならリダイレクト
   useEffect(() => {
     const run = async () => {
       const isPublic = pathname === NAV_ITEMS.LOGIN || pathname === NAV_ITEMS.SIGNUP;
