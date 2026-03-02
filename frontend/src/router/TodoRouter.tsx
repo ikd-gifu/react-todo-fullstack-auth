@@ -7,15 +7,18 @@
 import { Routes, Route } from 'react-router';
 import { PATHS } from '../constants/navigation.js';
 import { TodoPage, TodoDetailPage, TodoCreatePage, TodoEditPage } from '../pages/index.js';
+import { AuthenticatedLayout } from './AuthenticatedLayout';
 
 export const TodoRouter = () => {
   return (
     <Routes>
-      {/* index属性でトップページを指定 */}
-      <Route path={PATHS.TOP} element={<TodoPage />} />
-      <Route path={PATHS.DETAIL} element={<TodoDetailPage />} />
-      <Route path={PATHS.CREATE} element={<TodoCreatePage />} />
-      <Route path={PATHS.EDIT} element={<TodoEditPage />} />
+      <Route element={<AuthenticatedLayout />}>
+        {/* index属性でトップページを指定 */}
+        <Route path={PATHS.TOP} element={<TodoPage />} />
+        <Route path={PATHS.DETAIL} element={<TodoDetailPage />} />
+        <Route path={PATHS.CREATE} element={<TodoCreatePage />} />
+        <Route path={PATHS.EDIT} element={<TodoEditPage />} />
+      </Route>
       {/* Routes 構成で未一致時に出る警告を回避 */}
       <Route path="*" element={null} />
     </Routes>
