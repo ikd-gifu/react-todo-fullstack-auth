@@ -13,7 +13,7 @@ export const LoginTemplate = () => {
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>Login</h1>
+      <h1 className={styles.title}>ログイン</h1>
 
       <form className={styles.form} onSubmit={handleLoginSubmit}>
         <div className={styles.area}>
@@ -37,6 +37,7 @@ export const LoginTemplate = () => {
             name="password"
             render={({ field }) => (
               <InputFormValidation
+                type="password"
                 inputValue={field.value}
                 placeholder="password"
                 handleChangeValue={field.onChange}
@@ -47,11 +48,11 @@ export const LoginTemplate = () => {
         </div>
 
         <div className={styles.area}>
-          <CommonButton type="submit">Login</CommonButton>
+          <CommonButton type="submit">ログイン</CommonButton>
         </div>
 
         <div className={styles.link}>
-          <NavLink to={NAV_ITEMS.SIGNUP}>&lt;&lt; to signup page</NavLink>
+          <NavLink to={NAV_ITEMS.SIGNUP}>&lt;&lt; 新規登録はこちら</NavLink>
         </div>
       </form>
     </div>

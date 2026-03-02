@@ -13,7 +13,7 @@ export const SignUpTemplate = () => {
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>Sign Up</h1>
+      <h1 className={styles.title}>新規登録</h1>
 
       <form className={styles.form} onSubmit={handleSignUpSubmit}>
         <div className={styles.area}>
@@ -37,6 +37,7 @@ export const SignUpTemplate = () => {
             name="email"
             render={({ field }) => (
               <InputFormValidation
+                type="email"
                 inputValue={field.value}
                 placeholder="email"
                 handleChangeValue={field.onChange}
@@ -52,6 +53,7 @@ export const SignUpTemplate = () => {
             name="password"
             render={({ field }) => (
               <InputFormValidation
+                type="password"
                 inputValue={field.value}
                 placeholder="password"
                 handleChangeValue={field.onChange}
@@ -67,6 +69,7 @@ export const SignUpTemplate = () => {
             name="password_confirmation"
             render={({ field }) => (
               <InputFormValidation
+                type="password"
                 inputValue={field.value}
                 placeholder="confirm password"
                 handleChangeValue={field.onChange}
@@ -77,11 +80,11 @@ export const SignUpTemplate = () => {
         </div>
 
         <div className={styles.area}>
-          <CommonButton type="submit">Sign Up</CommonButton>
+          <CommonButton type="submit">登録</CommonButton>
         </div>
 
         <div className={styles.link}>
-          <NavLink to={NAV_ITEMS.LOGIN}>&lt;&lt; to login page</NavLink>
+          <NavLink to={NAV_ITEMS.LOGIN}>&lt;&lt; ログインはこちら</NavLink>
         </div>
       </form>
     </div>

@@ -9,7 +9,9 @@ import { FC, ChangeEvent, KeyboardEvent } from "react";
 // zodで入力時のバリデーションとuseTodoCreateTemplateを呼び出す際の引数で型を担保しているため、inputを利用しても問題ない
 // type InputFormProps = ComponentProps<"input">;
 
+// typeを指定しなければtext
 type InputFormProps = {
+  type?: string;
   inputValue: string;
   placeholder: string;
   handleChangeValue?: (e: ChangeEvent<HTMLInputElement>) => void; // TodoDetailTemplateでの使用を考慮しオプショナルに
@@ -18,6 +20,7 @@ type InputFormProps = {
 };
 
 export const InputForm: FC<InputFormProps> = ({
+  type = "text",
   inputValue,
   placeholder,
   handleChangeValue,
@@ -26,7 +29,7 @@ export const InputForm: FC<InputFormProps> = ({
 }) => (
   <input
     className={styles.input}
-    type="text"
+    type={type}
     placeholder={placeholder}
     value={inputValue}
     onChange={handleChangeValue}
