@@ -2,8 +2,11 @@ class AuthService
   # 環境変数から直接取得
   SECRET_KEY = ENV['JWT_SECRET']
   
-  # JWTの有効期限（24時間）
-  EXPIRATION_TIME = 24.hours.from_now
+  # JWTの有効期間（24時間）
+  # Rails起動時のクラス読み込み時に評価される
+  TOKEN_TTL = 24.hours
+  # この実装だと起動時から24時間の固定値になる
+  # EXPIRATION_TIME = 24.hours.from_now
 
   # JWTトークンを生成
   # @param user_id [Integer] ユーザーID
@@ -11,7 +14,8 @@ class AuthService
   def self.encode(user_id)
     payload = {
       user_id: user_id,
-      exp: EXPIRATION_TIME.to_i  # エクスポート時刻（UNIX時刻）
+      # encodeを呼び出した時刻を基準に有効期限を計算（UNIX時刻）
+      exp: TOKEN_TTL.from_now.to_i
     }
     
     # JWTライブラリを使って署名付きトークンを生成
